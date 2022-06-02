@@ -22,9 +22,13 @@ sdkmanager --sdk_root=$ANDROID_HOME "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
     "platform-tools" \
     "extras;android;m2repository" \
     "extras;google;m2repository" && \
-# Install Fastlane
+# Install Fastlane && Ruby 3.0.0
 apt-get update && \
-apt-get install --no-install-recommends -y --allow-unauthenticated build-essential git ruby-full && \
+apt-get install --no-install-recommends -y --allow-unauthenticated build-essential git gnupg2 && \
+gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
+\curl -sSL https://get.rvm.io | bash -s stable \
+source /etc/profile.d/rvm.sh \
+rvm install 3.0.0 \
 gem install rake && \
 gem install fastlane && \
 gem install bundler && \
